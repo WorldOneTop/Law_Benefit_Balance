@@ -1,15 +1,17 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.worldonetop.lawbenefitbalance"
         minSdk 25
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -40,9 +42,9 @@ dependencies {
     def pagingVersion = "3.1.1"
     def navigationVersion= "2.5.2"
     def retrofitVersion = "2.9.0"
-    def activityVersion = "1.6.0"
     def viewModelVersion = "2.5.1"
     def rxBindingVersion="4.0.0"
+    def hiltVersion = "2.38.1"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -61,12 +63,13 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.google.code.gson:gson:$retrofitVersion"
 
-    implementation "androidx.activity:activity-ktx:$activityVersion"
-    implementation "androidx.fragment:fragment-ktx:$activityVersion"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
 
     implementation "com.jakewharton.rxbinding4:rxbinding:$rxBindingVersion"
 
+
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$hiltVersion"
 
 }
