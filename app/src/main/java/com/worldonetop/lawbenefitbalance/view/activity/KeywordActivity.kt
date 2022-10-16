@@ -2,16 +2,16 @@ package com.worldonetop.lawbenefitbalance.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.worldonetop.lawbenefitbalance.databinding.ActivityMainBinding
+import com.worldonetop.lawbenefitbalance.databinding.ActivityKeywordBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
+class KeywordActivity : AppCompatActivity() {
+    lateinit var binding: ActivityKeywordBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityKeywordBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
