@@ -1,4 +1,4 @@
-package com.worldonetop.lawbenefitbalance.base
+package com.worldonetop.lawbenefitbalance.view
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
