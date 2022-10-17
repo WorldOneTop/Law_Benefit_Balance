@@ -32,9 +32,8 @@ android {
         jvmTarget = '1.8'
     }
 
-    buildFeatures {
-        viewBinding = true
-        dataBinding = true
+    dataBinding {
+        enabled true
     }
 }
 
@@ -65,6 +64,8 @@ dependencies {
 
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
+    implementation 'androidx.activity:activity-ktx:1.6.0' // because of "by" keyword
+    implementation 'androidx.fragment:fragment-ktx:1.5.3'
 
     implementation "com.jakewharton.rxbinding4:rxbinding:$rxBindingVersion"
 
