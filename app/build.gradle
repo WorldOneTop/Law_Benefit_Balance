@@ -45,7 +45,7 @@ dependencies {
     def rxBindingVersion="4.0.0"
     def hiltVersion = "2.38.1"
     def roomVersion = "2.4.3"
-    def tikXmlVersion = "0.8.15"
+    def tikXmlVersion = "0.8.13"
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
@@ -63,7 +63,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.google.code.gson:gson:$retrofitVersion"
-
+    implementation "com.squareup.okhttp3:logging-interceptor:3.9.0"
 
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModelVersion"
     implementation 'androidx.activity:activity-ktx:1.6.0' // because of "by" keyword
@@ -71,19 +71,17 @@ dependencies {
 
     implementation "com.jakewharton.rxbinding4:rxbinding:$rxBindingVersion"
 
-
     implementation "com.google.dagger:hilt-android:$hiltVersion"
     kapt "com.google.dagger:hilt-compiler:$hiltVersion"
-
 
     implementation "androidx.room:room-ktx:$roomVersion"
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
 
 
-
     implementation "com.tickaroo.tikxml:annotation:$tikXmlVersion"
     implementation "com.tickaroo.tikxml:core:$tikXmlVersion"
     implementation "com.tickaroo.tikxml:retrofit-converter:$tikXmlVersion"
     kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
+
 }

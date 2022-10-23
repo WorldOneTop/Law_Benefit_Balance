@@ -1,7 +1,13 @@
 package com.worldonetop.lawbenefitbalance.data.model
 
+import com.tickaroo.tikxml.annotation.Element
+import com.tickaroo.tikxml.annotation.Xml
+
+@Xml(name = "response")
 data class XmlResponse<T>(
+    @Element(name = "header")
     val header: XmlHeader,
+    @Element(name = "body")
     val body:XmlBody<T>
 )
 
