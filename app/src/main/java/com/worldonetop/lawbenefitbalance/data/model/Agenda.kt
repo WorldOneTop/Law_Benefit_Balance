@@ -5,27 +5,27 @@ import com.tickaroo.tikxml.annotation.Xml
 
 // 의사일정 정보, 스케줄이 기본
 @Xml(name = "item")
-data class Gigan (
+data class Agenda (
     @PropertyElement(name = "boardId")
-    val boardId:Long,// 게시판ID, == board_id
+    val boardId:Long?, // 게시판ID, == board_id
     @PropertyElement(name = "cha")
-    val cha:String, // 차수 제1차
+    val cha:String?, // 차수 제1차
     @PropertyElement(name = "committeeId")
-    val committeeId:Long, // 위원회ID, == committee_id
+    val committeeId:Long?, // 위원회ID, == committee_id
     @PropertyElement(name = "committeeName")
-    val committeeName:String, // 위원회
+    val committeeName:String?, // 위원회
     @PropertyElement(name = "gubun")
-    val gubun:String, // 본회의 01, 위원회 02
+    val gubun:String?, // 본회의 01, 위원회 02
     @PropertyElement(name = "meetingTime")
-    val meetingTime:String, // 회의시간 hh:mm
+    val meetingTime:String?, // 회의시간 hh:mm
     @PropertyElement(name = "meetingday")
-    val meetingday:String, // 회의일자 yyyy-mm-dd
+    val meetingday:String?, // 회의일자 yyyy-mm-dd
     @PropertyElement(name = "recordId")
-    val recordId:Long, // 게시물ID, == record_id
+    val recordId:Long?, // 게시물ID, == record_id
     @PropertyElement(name = "sessNm")
-    val sessNm:String, //회기 제251회국회(임시회)
+    val sessNm:String?, //회기 제251회국회(임시회)
     @PropertyElement(name = "title")
-    val title:String, // 제목 처리예상안건
+    val title:String?, // 제목 처리예상안건
 )
 // 상세정보 필요한 정보 : gubun, committee_id, board_id, record_id
 // 날짜별 필요한 정보 : start_dt, end_dt (서로 값 차이가 있어야함)

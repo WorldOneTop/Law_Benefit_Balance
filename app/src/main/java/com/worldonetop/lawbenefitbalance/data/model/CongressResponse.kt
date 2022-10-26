@@ -4,11 +4,11 @@ import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.Xml
 
 @Xml(name = "response")
-data class XmlResponse<T>(
+data class CongressResponse(
     @Element(name = "header")
-    val header: XmlHeader,
+    val header: CongressHeader,
     @Element(name = "body")
-    val body:XmlBody<T>
+    val body: CongressBody
 )
 
 //getSummaryInfoList는 페이징 없음
