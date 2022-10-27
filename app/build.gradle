@@ -88,5 +88,6 @@ dependencies {
     implementation "com.tickaroo.tikxml:core:$tikXmlVersion"
     implementation "com.tickaroo.tikxml:retrofit-converter:$tikXmlVersion"
     kapt "com.tickaroo.tikxml:processor:$tikXmlVersion"
+    implementation "com.tickaroo.tikxml:converter-htmlescape:$tikXmlVersion"
 
 }
