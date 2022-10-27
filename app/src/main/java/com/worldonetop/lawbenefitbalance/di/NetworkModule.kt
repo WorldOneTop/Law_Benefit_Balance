@@ -2,6 +2,7 @@ package com.worldonetop.lawbenefitbalance.di
 
 import android.content.Context
 import com.tickaroo.tikxml.TikXml
+import com.tickaroo.tikxml.converter.htmlescape.HtmlEscapeStringConverter
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import com.worldonetop.lawbenefitbalance.R
 import com.worldonetop.lawbenefitbalance.data.remote.CongressService
@@ -25,9 +26,9 @@ import javax.net.ssl.X509TrustManager
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule{
+object NetworkModule{
     private val congressServiceURL = "https://apis.data.go.kr/9710000/"
-    private val newsServiceURL = "https://apis.data.go.kr/9710000/"
+    private val newsServiceURL = "https://open.assembly.go.kr/portal/openapi/"
 
     @Singleton
     @Provides
@@ -35,7 +36,14 @@ class NetworkModule{
         return Retrofit.Builder()
             .baseUrl(congressServiceURL)
             .client(provideOkHttpClient(context.resources.openRawResource(R.raw.xml_crt)))
-            .addConverterFactory(TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build()))
+            .addConverterFactory(
+                TikXmlConverterFactory.create(
+                    TikXml.Builder()
+                        .exceptionOnUnreadXml(false)
+                        .addTypeConverter(String::class.java, HtmlEscapeStringConverter())
+                        .build()
+                )
+            )
             .build()
             .create(CongressService::class.java)
     }
@@ -45,7 +53,14 @@ class NetworkModule{
         return Retrofit.Builder()
             .baseUrl(newsServiceURL)
             .client(provideOkHttpClient(context.resources.openRawResource(R.raw.news_crt)))
-            .addConverterFactory(TikXmlConverterFactory.create(TikXml.Builder().exceptionOnUnreadXml(false).build() ))
+            .addConverterFactory(
+                TikXmlConverterFactory.create(
+                    TikXml.Builder()
+                        .exceptionOnUnreadXml(false)
+                        .addTypeConverter(String.javaClass, HtmlEscapeStringConverter())
+                        .build()
+                )
+            )
             .build()
             .create(NewsService::class.java)
     }
@@ -90,15 +105,10 @@ class NetworkModule{
 
         return OkHttpClient.Builder()
             .addInterceptor(logger)
-            .run {
-                addInterceptor(HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
-                })
-                sslSocketFactory(
-                    sslContext.socketFactory,
-                    tmf.trustManagers[0] as X509TrustManager
-                )
-                build()
-            }
+            .sslSocketFactory(
+                sslContext.socketFactory,
+                tmf.trustManagers[0] as X509TrustManager
+            )
+            .build()
     }
 }
