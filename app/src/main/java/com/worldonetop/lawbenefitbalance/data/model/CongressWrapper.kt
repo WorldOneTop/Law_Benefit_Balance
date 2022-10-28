@@ -6,6 +6,7 @@ import com.tickaroo.tikxml.annotation.Xml
 
 @Xml(name = "item")
 data class CongressWrapper(
+    //bill
     @PropertyElement(name = "billId")
     val billId:String?, // 의안 구분 ID, PRC_R1D5Y1D2G2D9Z1J6S3E8F0R2S4V7L5
     @PropertyElement(name = "billName")
@@ -27,7 +28,7 @@ data class CongressWrapper(
     @PropertyElement(name = "summary")
     val summary:String?,// 의안 요약 내용
 
-
+    //conference
     @PropertyElement(name = "commName")
     val commName: String?,// 회의구분, 농림축산식품해양수산위원회
     @PropertyElement(name = "confDate")
@@ -49,9 +50,13 @@ data class CongressWrapper(
     @PropertyElement(name = "vodLink")
     val vodLink: String?, // vod link
 
-
+    // Schedule
+    @PropertyElement(name = "agendaId")
+    val agendaId:Long?, // 구분이 01일때만 있고 아니면 boardID가 있음
     @PropertyElement(name = "boardId")
     val boardId:Long?,// 게시판ID, == board_id
+    @PropertyElement(name = "content")
+    val content:String?,
     @PropertyElement(name = "cha")
     val cha:String?, // 차수 제1차
     @PropertyElement(name = "committeeId")
@@ -87,12 +92,12 @@ data class CongressWrapper(
                 commName, confDate, conferNum, daeDisp, degreeNum, hwpLink, pdfLink, sesNum, summary, vodLink
             )
     }
-    val agenda:Agenda? by lazy{
+    val schedule:Schedule? by lazy{
         if(boardId == null)
             null
         else
-            Agenda(
-                boardId, cha, committeeId, committeeName, gubun, meetingTime, meetingday, recordId, sessNm, title
+            Schedule(
+                agendaId, boardId, content, cha, committeeId, committeeName, gubun, meetingTime, meetingday, recordId, sessNm, title
             )
     }
 }
